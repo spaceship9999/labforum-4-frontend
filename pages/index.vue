@@ -4,19 +4,19 @@
     <CategoryButton></CategoryButton>
     <div class="grid grid-cols-4 py-10 gap-20">
       <div class="col-span-4 lg:col-span-2">
-        <h2 class="text-2xl uppercase font-bold">Categories</h2>
-        <NuxtLink></NuxtLink>
+       <LandingFeaturedCategories></LandingFeaturedCategories>
       </div>
       <div class="col-span-4 lg:col-span-2">
-        <h2 class="text-2xl uppercase font-bold">Featured Posts</h2>
+        <h2 class="text-2xl uppercase font-bold">Highly-hitted Posts</h2>
       </div>
     </div>
   </div>
 </template>
 <script>
 import CategoryButton from "../components/CategoryButton";
+import LandingFeaturedCategories from "../components/LandingFeaturedCategories";
 export default {
-  components: {CategoryButton},
+  components: {CategoryButton, LandingFeaturedCategories},
   layout: 'default'
 }
 </script>

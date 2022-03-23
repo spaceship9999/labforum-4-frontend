@@ -1,9 +1,11 @@
 import { useUserStore } from '~/stores/useUserStore'
 import { useProfileStore } from "~/stores/useProfileStore";
+import usePageData from "~/composables/usePageData";
 
 export default function() {
     const user = useUserStore();
     const profile = useProfileStore();
+    const page_data = usePageData();
     const user_details = ref({});
 
     async function getUserDetails() {
@@ -26,7 +28,10 @@ export default function() {
             loggedIn: true,
         })
 
+        page_data.updateCategories()
         useNuxtApp().$axios.setHeader('Authorization', `Bearer ${result.access_token}`)
+
+        //
     }
 
     async function logout() {
@@ -39,9 +44,13 @@ export default function() {
             loggedIn: false,
         })
         useNuxtApp().$axios.setHeader('Authorization', null)
+        page_data.updateCategories()
+        useNuxtApp().$router.push('/')
     }
 
     onMounted(() => {
+        useNuxtApp().$axios.setHeader('Authorization', `Bearer ${user.token}`)
+        page_data.updateCategories()
         if (user.loggedIn) {
             getUserDetails()
         }
