@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!userStore.loggedIn"
+  <div v-if="!userStore.isLoggedIn"
        v-bind:class="{'block' : dialogToggled, 'hidden': !dialogToggled}"
        class="absolute inset-0 w-full h-full bg-black/40 flex items-center z-50">
     <div class="container bg-white login-modal p-5 rounded-lg md:max-w-[500px] max-w-full">
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+import {useUserStore} from "../stores/useUserStore";
 
 const props = defineProps([
   'isDialogToggled'
@@ -41,8 +42,7 @@ const emit = defineEmits([
 ]);
 const username = ref('');
 const password = ref('')
-const user = useUser()
-const userStore = user.user;
+const userStore = useUserStore()
 const dialogToggled = computed({
   get() {
     return props.isDialogToggled
@@ -53,7 +53,7 @@ const dialogToggled = computed({
 })
 
 function submitLogin() {
-  user.login(username, password)
+  userStore.login(username, password)
   dialogToggled.value = false
 }
 

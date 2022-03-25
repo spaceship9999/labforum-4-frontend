@@ -9,5 +9,12 @@ export const useProfileStore = defineStore('profileStore', {
             email: '',
             register_date: '',
         }
+    },
+    actions: {
+        async loadProfile() {
+            const request = await useNuxtApp().$axios.get('/api/user/details')
+            const result =  await request.data
+            this.$patch(result)
+        },
     }
 })

@@ -9,7 +9,7 @@ import { useProfileStore } from '~/stores/useProfileStore'
 export default {
   name: "profile",
   setup() {
-    const user = useUser()
+    const user = useUserStore()
     const profileStore = useProfileStore()
     const details = user.getUserDetails()
 

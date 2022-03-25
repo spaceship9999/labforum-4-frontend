@@ -24,32 +24,17 @@
 </template>
 
 <script setup>
+
 import { usePageDataStore } from "../stores/usePageDataStore";
 
-const listing = usePageData()
-await listing.loadCategories()
-
-const listing_store = usePageDataStore()
-
-const category_list = ref([])
+const props = defineProps(['category_list'])
 const buttonToggled = ref(false)
 const category = ref('')
+
 const filtered_category = computed(
-    () => category_list.value.filter((e) => e.name.toLowerCase().indexOf(category.value.toLowerCase()) !== -1 )
+    () => props.category_list.filter((e) => e.name.toLowerCase().indexOf(category.value.toLowerCase()) !== -1 )
 )
 
-//Binding it to store and mounted changes
-listing_store.$subscribe(() => {
-  category_list.value = listing_store.categories
-})
-onMounted((e) => {
-  category_list.value = listing_store.categories
-})
-
-
-function hideMenu() {
-  buttonToggled.value = false
-}
 function toggleButton() {
   buttonToggled.value = !buttonToggled.value
 }

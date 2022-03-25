@@ -60,11 +60,10 @@ export default {
   setup() {
     const userStore = useUserStore()
     const profileStore = useProfileStore()
-    const user = useUser()
     const dialogToggled = ref(false)
 
     function logout() {
-      user.logout()
+      userStore.logout()
     }
     return {
       userStore,
