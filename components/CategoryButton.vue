@@ -4,7 +4,6 @@
             @click="toggleButton">
       Categories
     </button>
-    <ClientOnly>
     <ul :class="{'hidden' : !buttonToggled}"
         @focusout="toggleButton"
         class="absolute z-30 mt-2 left-0 w-[350px] shadow-2xl ring-1 ring-black ring-opacity-5 rounded-md overflow-hidden bg-white">
@@ -19,7 +18,6 @@
         </NuxtLink>
       </li>
     </ul>
-    </ClientOnly>
   </div>
 </template>
 
