@@ -15,6 +15,11 @@ module.exports = {
                 "xl": '4rem',
             },
         },
+        extend: {
+            colors: {
+                'grey' : '#292A2A',
+            },
+        }
     },
 
     plugins: [],
